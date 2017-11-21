@@ -2,9 +2,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.CountDownLatch;
+import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,7 +18,7 @@ public class Servidor {
 			javaDuiono j = new javaDuiono();
 			j.inicializarConexion();
 			ExecutorService pool=Executors.newFixedThreadPool(5);
-			final BlockingQueue<Integer> colaMotor=new ArrayBlockingQueue<Integer>(1000);
+			Vector<Integer> colaMotor=new Vector<Integer>(1000);
 
 			try {
 				while(true) {
@@ -33,16 +31,14 @@ public class Servidor {
 					
 					//Aquí las podemos tratar, y mandarlas al robot, pero necesitamos una forma de esperar a todos
 					for(int i=0;i<5;i++) {
-						j.enviarDatos(colaMotor.take());
+						j.enviarDatos(colaMotor.get(0));
+						colaMotor.remove(0);
 						
 					}
 					
 				}
 			}
-			catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}catch(IOException e) {
+			catch(IOException e) {
 				System.out.println("Problema con el accept");
 				e.printStackTrace();
 			} 
