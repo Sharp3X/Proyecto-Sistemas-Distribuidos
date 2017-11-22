@@ -21,6 +21,7 @@ public class HiloMandaOrdenes implements Runnable{
 			synchronized (cola) {
 				try 
 				{
+					Thread.sleep(20);//para que le de tiempo al motor a mover la posicion
 					m.moverMotor(this.cola.take());
 				} 
 				catch (InterruptedException e) 
