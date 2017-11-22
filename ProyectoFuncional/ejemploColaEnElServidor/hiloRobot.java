@@ -1,4 +1,4 @@
-package ejemplo;
+package ejemploColaEnElServidor;
 
 import java.util.Vector;
 

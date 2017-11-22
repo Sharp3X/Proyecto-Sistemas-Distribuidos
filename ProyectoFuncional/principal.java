@@ -16,10 +16,8 @@ public class principal {
 				System.out.println("introduce entero:");
 				j.enviarDatos(sc.nextInt());
 			}
-
-
-		
 		
 	}
 
 }
+

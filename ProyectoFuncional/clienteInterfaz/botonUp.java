@@ -28,7 +28,7 @@ public class botonUp extends boton
 		{
 			try
 			{
-				super.getEnviador().enviarComando("MOVE "+super.getMotor()+" UP");
+				super.getEnviador().enviarComando("MOVE "+super.getMotor()+" UP\r\n");
 			}
 			catch(IOException e)
 			{

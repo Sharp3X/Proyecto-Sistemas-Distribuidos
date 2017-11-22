@@ -27,7 +27,7 @@ public class botonDown extends boton
 		{
 			try
 			{
-				super.getEnviador().enviarComando("MOVE "+super.getMotor()+" DOWN");
+				super.getEnviador().enviarComando("MOVE "+super.getMotor()+" DOWN\r\n");
 			}
 			catch(IOException e)
 			{
