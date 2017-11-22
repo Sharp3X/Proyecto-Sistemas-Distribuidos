@@ -1,8 +1,11 @@
+package Servidor;
+
 import java.io.Closeable;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
+import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 
 public class HiloCliente implements Runnable {
@@ -43,14 +46,14 @@ public class HiloCliente implements Runnable {
 			// recibe el nMotor, y el numero de grados
 
 			recibido = dis.readInt();
-			synchronized (cola) {
+			
 				cola.put(recibido);
-			}
+				System.out.println("Hilo "+ i + " elemento añadido");
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			System.out.println("No se puede añadir a la cola");
+			System.out.println("Interrupción al añadir");
 			e.printStackTrace();
 		} finally {
 			cerrar(is);
@@ -69,4 +72,3 @@ public class HiloCliente implements Runnable {
 		}
 	}
 }
-//Prueba para GitHub

@@ -39,12 +39,19 @@ public class enviadorCliente
 	
 	public void cerrarEnviadorCliente() throws IOException
 	{
-		if(s != null)
-			s.close();
+		cerrar(s);
+		cerrar(out);
 
-		if(out != null)
-			out.close();
+	}
 
+	public static void cerrar(Closeable o) {
+		try {
+			if (o != null) {
+				o.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
