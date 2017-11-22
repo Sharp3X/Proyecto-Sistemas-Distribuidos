@@ -1,3 +1,5 @@
+package Servidor;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -20,8 +22,8 @@ public class Servidor {
 			ss=new ServerSocket(6666);
 			
 			//Inicializamos el robot
-			javaDuiono j = new javaDuiono();
-			j.inicializarConexion();
+			//javaDuiono j = new javaDuiono();
+			//j.inicializarConexion();
 			ExecutorService pool=Executors.newCachedThreadPool();
 			BlockingQueue<Integer> colaMotor=new ArrayBlockingQueue<Integer>(1000);
 			
