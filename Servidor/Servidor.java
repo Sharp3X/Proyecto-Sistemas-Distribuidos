@@ -2,9 +2,12 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Vector;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import claseManejadorasRobot.javaDuiono;
 
 public class Servidor {
 	public static void main(String[] args) {
@@ -13,12 +16,20 @@ public class Servidor {
 		Socket s=null;
 		
 		try {
+			//Inicializamos el ServerSocket
 			ss=new ServerSocket(6666);
+			
 			//Inicializamos el robot
 			javaDuiono j = new javaDuiono();
 			j.inicializarConexion();
-			ExecutorService pool=Executors.newFixedThreadPool(5);
-			Vector<Integer> colaMotor=new Vector<Integer>(1000);
+			ExecutorService pool=Executors.newCachedThreadPool();
+			BlockingQueue<Integer> colaMotor=new ArrayBlockingQueue<Integer>(1000);
+			
+			//Inicializamos el hilo que manda ordenes al brazo
+			
+			Thread hi=new Thread(new HiloMandaOrdenes(colaMotor/*,j*/));
+			hi.start();
+			
 
 			try {
 				while(true) {
@@ -27,21 +38,13 @@ public class Servidor {
 						System.out.println("Cliente "+i+"conectado");
 						pool.execute(new HiloCliente(s,colaMotor,i));
 					}
-					//En bloques de 5 clientes, se cargan las instrucciones en la cola
-					
-					//Aquí las podemos tratar, y mandarlas al robot, pero necesitamos una forma de esperar a todos
-					for(int i=0;i<5;i++) {
-						j.enviarDatos(colaMotor.get(0));
-						colaMotor.remove(0);
-						
-					}
-					
+					System.out.println("Bloque de 5 hilos creado");
 				}
 			}
 			catch(IOException e) {
 				System.out.println("Problema con el accept");
 				e.printStackTrace();
-			} 
+			}
 		}catch(IOException e1) {
 			System.out.println("Problema con el ServerSocket");
 			e1.printStackTrace();

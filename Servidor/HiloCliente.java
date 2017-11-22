@@ -12,7 +12,7 @@ public class HiloCliente implements Runnable {
 	private Socket s;
 	private int nMotor;
 	private int grados; // Up down
-	private Vector<Integer> cola;
+	private BlockingQueue<Integer> cola;
 	int i;
 
 	public int getnMotor() {
@@ -23,7 +23,7 @@ public class HiloCliente implements Runnable {
 		return grados;
 	}
 
-	public HiloCliente(Socket s, Vector<Integer> cola, int i) {
+	public HiloCliente(Socket s, BlockingQueue<Integer> cola, int i) {
 		super();
 		this.s = s;
 		this.cola = cola;
@@ -45,12 +45,13 @@ public class HiloCliente implements Runnable {
 
 			recibido = dis.readInt();
 			
-			synchronized (cola) {
-				cola.addElement(recibido);
+				cola.put(recibido);
 				System.out.println("Hilo "+ i + " elemento añadido");
-			}
 
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			System.out.println("Interrupción al añadir");
 			e.printStackTrace();
 		} finally {
 			cerrar(is);
