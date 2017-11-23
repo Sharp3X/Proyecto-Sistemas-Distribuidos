@@ -2,7 +2,7 @@ package Servidor;
 
 import java.util.concurrent.BlockingQueue;
 
-import claseManejadorasRobot.javaDuiono;
+import ProyectoFuncional.claseManejadorasRobot.javaDuiono;
 
 public class HiloMandaOrdenes implements Runnable{
 	private BlockingQueue cola;

@@ -1,4 +1,4 @@
-package clienteInterfaz;
+package ProyectoFuncional.clienteInterfaz;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;

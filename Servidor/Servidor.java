@@ -9,7 +9,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import claseManejadorasRobot.javaDuiono;
+import ProyectoFuncional.claseManejadorasRobot.javaDuiono;
 
 public class Servidor {
 	public static void main(String[] args) {

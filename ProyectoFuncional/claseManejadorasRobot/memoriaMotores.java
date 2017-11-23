@@ -1,4 +1,4 @@
-package claseManejadorasRobot;
+package ProyectoFuncional.claseManejadorasRobot;
 
 public class memoriaMotores
 {

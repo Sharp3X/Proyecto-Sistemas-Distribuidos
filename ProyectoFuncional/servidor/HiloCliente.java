@@ -1,4 +1,4 @@
-package servidor;
+package ProyectoFuncional.servidor;
 
 import java.io.Closeable;
 import java.io.DataInputStream;

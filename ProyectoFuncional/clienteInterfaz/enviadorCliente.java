@@ -1,5 +1,6 @@
-package clienteInterfaz;
+package ProyectoFuncional.clienteInterfaz;
 
+import java.io.Closeable;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;

@@ -1,4 +1,4 @@
-package claseManejadorasRobot;
+package ProyectoFuncional.claseManejadorasRobot;
 
 import java.util.Scanner;
 

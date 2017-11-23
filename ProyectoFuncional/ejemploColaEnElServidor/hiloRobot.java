@@ -1,4 +1,4 @@
-package ejemploColaEnElServidor;
+package ProyectoFuncional.ejemploColaEnElServidor;
 
 import java.util.Vector;
 

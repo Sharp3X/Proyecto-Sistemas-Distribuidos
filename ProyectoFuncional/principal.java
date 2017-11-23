@@ -1,3 +1,5 @@
+package ProyectoFuncional;
+
 import java.util.Scanner;
 
 public class principal {

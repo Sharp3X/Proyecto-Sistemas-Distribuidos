@@ -1,4 +1,4 @@
-package clienteInterfaz;
+package ProyectoFuncional.clienteInterfaz;
 
 import java.io.IOException;
 
