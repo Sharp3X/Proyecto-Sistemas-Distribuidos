@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import ProyectoFuncional.claseManejadorasRobot.javaDuiono;
+import ServidorDescargador.servidor;
 
 public class Servidor {
 	public static void main(String[] args) {
@@ -18,8 +19,13 @@ public class Servidor {
 		Socket s=null;
 		
 		try {
+			//Inicializamos el servidor que servirá para descargar el ejecutable, atiende en el 8080
+			Thread des=new Thread(new servidor());
+			des.start();
+			
 			//Inicializamos el ServerSocket
 			ss=new ServerSocket(6666);
+			
 			
 			//Inicializamos el robot
 			//javaDuiono j = new javaDuiono();

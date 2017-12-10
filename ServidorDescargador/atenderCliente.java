@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
+import java.io.RandomAccessFile;
 import java.net.Socket;
 import java.net.URLConnection;
 import java.util.Date;
@@ -26,19 +27,26 @@ public class atenderCliente extends Thread {
 		DataInputStream dis = null;
 		OutputStream os = null;
 		FileInputStream fis = null;
+		RandomAccessFile raf=null;
+		BufferedWriter bw=null;
+		boolean es206=false;	//booleano para saber si nos viene una petición con range
 
 		try {
 			os = s.getOutputStream();
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
+			bw = new BufferedWriter(new OutputStreamWriter(os));
 			dis = new DataInputStream(s.getInputStream());
-			System.out.println("antes");
 			String mensaje = dis.readLine();
 			System.out.println(mensaje);
 
 			if (mensaje != null) {
 				File aux = buscaFichero(mensaje);
 
-				String cType = URLConnection.guessContentTypeFromName(aux.getName());
+				String cType = URLConnection.guessContentTypeFromName(aux.getName()); //no detecta css
+				String [] auxiliar=aux.getName().split(".");
+				if(auxiliar[auxiliar.length-1].equals("css")) {
+					cType="text/css";
+				}
+				
 				String error;
 				long fSize;
 				if (aux == null) {
@@ -51,49 +59,41 @@ public class atenderCliente extends Thread {
 				} else if (aux.exists() && aux.isFile()) {
 
 					fSize = aux.length();
-					sendMIMEHeading(s.getOutputStream(), 200, cType, fSize);
+					
 
 					// comprobamos si es head o get
 					if (mensaje.startsWith("GET ")) {
 						String extra=dis.readLine();
 						long i1=0;
 						long i2=aux.length();
-						while(extra.isEmpty()) {
-							if(extra.startsWith("Range "))
+						while(!extra.isEmpty()) {
+							if(extra.startsWith("Range: "))
 							{
-								i1=Integer.parseInt(extra.split(": ")[1].split("-")[0]);
-								i2=Integer.parseInt(extra.split(": ")[1].split("-")[1]);
+								i1=Integer.parseInt(extra.split("=")[1].split("-")[0]);
+								i2=Integer.parseInt(extra.split("=")[1].split("-")[1]);
+								es206=true;
 							}
+							extra=dis.readLine();
 						}
-												
-						fis = new FileInputStream(aux);
-						int buffSize=1000;
-						byte[] buff = new byte[buffSize];
-						int leidos = fis.read(buff);
-						while (leidos != -1) {
-							if(i1-1000>0) {
-								i1-=1000;
-								i2-=1000;
-							}
-							else if(i2-1000>0){
-								os.write(buff, (int)i1, leidos);
-								i1=0;
-								i2=1000;
-							}
-							else {
-								os.write(buff, (int)i1, (int)i2);
-							}
-							leidos = fis.read(buff);
+						if(es206) {
+							sendMIMEHeading206(s.getOutputStream(), 206, cType, fSize, i1, i2, aux.length());
 						}
+						else {
+							sendMIMEHeading(s.getOutputStream(), 200, cType, fSize);  //206 para RAF si no tiene range
+						}
+						
+						raf= new RandomAccessFile(aux, "r");
+						raf.seek(i1);
+						byte[] buff = new byte[(int) (i2-i1+1)];
+						raf.readFully(buff);
+						os.write(buff);
 					}
 				} else {
-					System.out.println("Llega al 404");
 					error = makeHTMLErrorText(404, "Error 404");
 					fSize = error.length();
 					sendMIMEHeading(s.getOutputStream(), 404, null, fSize);
 					bw.write(error);
 					bw.flush();
-					System.out.println("envia");
 				}
 			}
 
@@ -102,6 +102,11 @@ public class atenderCliente extends Thread {
 			e.printStackTrace();
 		} finally {
 			cerrar(fis);
+			cerrar(bw);
+			cerrar(os);
+			cerrar(dis);
+			cerrar(raf);
+			cerrar(this.s);
 		}
 
 	}
@@ -166,6 +171,16 @@ public class atenderCliente extends Thread {
 			dos.print("\r\n");
 		}
 		dos.flush();
+	}
+	
+	private void sendMIMEHeading206(OutputStream os, int code, String cType, long fSize,long indice1, long indice2,long tam) {
+		PrintStream dos = new PrintStream(os);
+		dos.print("HTTP/1.1 " + code + " Partial Content");
+		dos.print("Date: " + new Date() + "\r\n");
+		dos.print("Content-Range: bytes "+indice1+"-"+indice2+"/"+tam);
+		dos.print("Content-length: " + fSize + "\r\n");
+		dos.print("Content-type: " + cType + "\r\n");
+		dos.print("\r\n");
 	}
 
 	private String makeHTMLErrorText(int code, String txt) {

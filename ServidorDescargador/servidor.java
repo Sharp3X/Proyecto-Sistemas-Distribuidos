@@ -7,9 +7,9 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class servidor {
+public class servidor extends Thread{
 	
-	public static void main(String[] args) {
+	public void run() {
 		ExecutorService es = null;
 		Socket client=null;
 		ServerSocket ss = null;
@@ -19,12 +19,12 @@ public class servidor {
 		es=Executors.newCachedThreadPool();
 		try {
 			ss=new ServerSocket(8080);
-			System.out.println("Servidor funcionando");
+			System.out.println("Servidor para descargar ejecutable funcionando (8080)");
 			while(true) {
 			
 				try {
 					client=ss.accept();
-					System.out.println("Cliente atendido");
+					System.out.println("Cliente descargador de ejecutable atendido");
 					aux=new atenderCliente(client);
 					aux.start();
 					
