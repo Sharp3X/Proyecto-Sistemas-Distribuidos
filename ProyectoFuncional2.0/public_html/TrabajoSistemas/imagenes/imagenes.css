@@ -1,0 +1,18 @@
+
+img#espana{
+width: 3vw;
+float: right;
+}
+
+img#uk{
+width: 3vw;
+float: right;
+}
+header{
+	background-image: url(../imagenes/fondo1.jpg);
+
+}
+
+body{
+	background-image: url(../imagenes/fondo5.jpeg);
+}

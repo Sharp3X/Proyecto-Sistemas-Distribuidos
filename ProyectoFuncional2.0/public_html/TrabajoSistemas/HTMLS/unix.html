@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head> 
+<meta charset="utf-8">
+<meta name="keywords" content="Gestión de memoria, Memoria,
+Universidad de La Rioja, Alejandro Martínez Martínez, Israel Marañón Mangado, Alicia Martín Casas,
+Ingeniería Informática, Matemáticas">
+<meta name="description" content="En esta página encontrarás el trabajo
+de sistemas informáticos sobre la gestión de memoria en los diferentes sistemas operativos">
+<meta name="Author" content="Israel Marañón Mangado, Alicia Martín Casas y Alejandro Martínez Martínez">
+<title>Gestión de memoria en Sistemas Operativos</title>
+	<link rel="stylesheet" type="text/css" href="../CSS/posiciones.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/menu.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/imagenes.css">
+	<link rel="shortcut icon" type="image/png" href="../imagenes/icono.png">
+
+</head>
+<body>
+<header>
+<p> Gestión de memoria en Sistemas Operativos</p>
+<a href="unix.html">
+<img id="espana" alt="Página en Castellano" src="../imagenes/ESPANA.png"></a>
+<a href="unixeng.html">
+<img id="uk" alt="Página en Inglés" src="../imagenes/UK.png"></a>
+</header>
+<nav>
+<div id='cssmenu'>
+				<ul>
+				   <li class='active'><a href='index.html'><span>Inicio</span></a></li>
+				   <li class='has-sub'><a href="memoria.html"><span>Memoria</span></a></li>
+				   <li class='has-sub'><span>Sistemas Operativos</span>
+					  <ul>
+						 <li class='has-sub'><a href="windows.html"><span>Windows</span></a></li>
+						<li class='has-sub'><a href="linux.html"><span>Linux</span></a></li>
+						 <li class='has-sub'><a href="unix.html"><span>Unix</span></a></li>
+						 <li class='has-sub'><a href="vax.html"><span>VAX/VMS</span></a></li>
+						<li class='has-sub'><a href="mac.html"><span>MAC</span></a></li>
+					  </ul>
+				   </li>
+				   <li class='last'><a href='contacto.html'><span>Contacto</span></a></li>
+				</ul>
+			</div>
+</nav>
+<section id="contenido">
+<h1>UNIX</h1>
+La gestión de la memoria es muy dependiente del soporte hardware disponible, existen diferentes formas de gestión de memoria en UNIX. Las implementaciones actuales proporcionan memoria virtual con paginación por demanda combinado con swapping de procesos.<br><br>
+ Para cada entrada de la tabla de páginas se considera la dirección física del marco de página, bits de protección (r, w, x), bit de validez, bit de referencia, bit de página modificada, y un contador de antigüedad de la página. Sólo la dirección física y el bit de validez deben estar obligatoriamente soportados por hardware, el resto de la información puede simularse en software. <br> <br>
+Además, para cada entrada de la tabla de páginas se almacena la información para acceder a la página en memoria secundaria (descriptor de bloque del disco). Otra estructura de información que se mantiene es una lista de marcos de página, que guarda información acerca del estado de la página (asignada, en fichero ejecutable, libre, cargándose por DMA), el número de procesos que referencian el marco (para compartición), y el dispositivo que contiene una copia de la página y el número de bloque.<br><br>
+Algunas características de la gestión de la memoria virtual son las siguientes:<br><br>
+<ul>
+<li>Asignación global y working-set: UNIX define el working-set de un proceso como el conjunto de páginas asignadas a un proceso. Los marcos no asignados a ningún proceso son marcos libres, definidos por el sistema, asignables a cualquier proceso. Si en un instante de tiempo no se alcanza el límite, un proceso paginador  entra para envejecer las páginas. Toda referencia a una página pone a cero su edad. Si la edad alcanza un valor n, establecido por la instalación, la página pasa a estado libre. Este mecanismo (algoritmo del reloj) es utilizado también por Linux.</li>
+<li>Escritura de páginas en disco por grupos: Si el paginador decide liberar una página y la página se ha modificado o no existe una copia en disco, éste pone la página en una lista de páginas a escribir. Si el número de elementos de esta lista alcanza un cierto límite, las páginas se escriben físicamente en el disco.</li>
+<li>Swapping: En situaciones de mucha demanda de memoria por parte de los procesos, cuando la rutina de fallo de página no es capaz de mantener el nivel mínimo de marcos libres, entra el proceso swapper para sacar algún proceso de memoria. Los criterios de elección dependen de la versión de UNIX, pero fundamentalmente se basan en el estado del proceso y su prioridad.</li>
+
+</ul>
+
+
+
+
+</section>
+<footer>
+<img id="HTML5_validador" alt="HTML Validado" src="../imagenes/HTML5.png">
+<img id="css_validador" alt="CSS Validado" src="../imagenes/css.gif">
+</footer>
+
+            
+</body>
+</html>

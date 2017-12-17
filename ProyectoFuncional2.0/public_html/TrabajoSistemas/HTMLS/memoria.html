@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head> 
+<meta charset="utf-8">
+<meta name="keywords" content="Gestión de memoria, Memoria,
+Universidad de La Rioja, Alejandro Martínez Martínez, Israel Marañón Mangado, Alicia Martín Casas,
+Ingeniería Informática, Matemáticas">
+<meta name="description" content="En esta página encontrarás el trabajo
+de sistemas informáticos sobre la gestión de memoria en los diferentes sistemas operativos">
+<meta name="Author" content="Israel Marañón Mangado, Alicia Martín Casas y Alejandro Martínez Martínez">
+<title>Gestión de memoria en Sistemas Operativos</title>
+	<link rel="stylesheet" type="text/css" href="../CSS/posiciones.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/menu.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/imagenes.css">
+	<link rel="shortcut icon" type="image/png" href="../imagenes/icono.png">
+
+</head>
+<body>
+<header>
+<p>Gestión de memoria en Sistemas Operativos</p>
+<a href="memoria.html">
+<img id="espana" alt="Página en Castellano" src="../imagenes/ESPANA.png"></a>
+<a href="memoriaeng.html">
+<img id="uk" alt="Página en Inglés" src="../imagenes/UK.png"></a>
+</header>
+<nav>
+<div id='cssmenu'>
+				<ul>
+				   <li class='active'><a href='index.html'><span>Inicio</span></a></li>
+				   <li class='has-sub'><a href="memoria.html"><span>Memoria</span></a></li>
+				   <li class='has-sub'><span>Sistemas Operativos</span>
+					  <ul>
+						 <li class='has-sub'><a href="windows.html"><span>Windows</span></a></li>
+						<li class='has-sub'><a href="linux.html"><span>Linux</span></a></li>
+						 <li class='has-sub'><a href="unix.html"><span>Unix</span></a></li>
+						 <li class='has-sub'><a href="vax.html"><span>VAX/VMS</span></a></li>
+						<li class='has-sub'><a href="mac.html"><span>MAC</span></a></li>
+					  </ul>
+				   </li>
+				   <li class='last'><a href='contacto.html'><span>Contacto</span></a></li>
+				</ul>
+			</div>
+</nav>
+<section id="contenido">
+
+<h1>Memoria</h1>
+En la memoria física de un computador coexisten el sistema operativo, las rutinas de enlace dinámico y los programas de usuario. En los sistemas operativos modernos la gestión de memoria resuelve aspectos como:<br> 
+<ul>
+<li>La carga de programas y su ubicación, establece la correspondencia entre las direcciones lógicas del programa y su ubicación física en memoria.</li>
+<li>La presencia simultánea de más de un programa en memoria. </li>
+<li>La posibilidad de cargar rutinas en tiempo de ejecución (rutinas de enlace dinámico1 ).</li>
+<li>La compartición de espacios de memoria por varios programas. </li>
+<li>La ejecución de programas que no caben completos en memoria.</li>
+<li>La gestión eficiente del espacio de memoria libre.</li>
+</ul>
+Las políticas de gestión a lo largo de la historia, son:<br>
+<p>Monitor residente,  particionado fijo (MFT) o variable (MVT),  swapping,  paginación y segmentación, enlace dinámico y memoria virtual.
+Pero  los sistemas operativos actuales utilizan memoria virtual soportada por paginación y segmentación.<br>
+<br>
+
+<h1>Paginación</h1>
+La paginación es una estrategia de organización de la memoria que consiste en dividir la memoria en porciones de igual tamaño, llamadas  marcos de página o páginas. Están definidas por un número de página, que identifica a cada una. Cada página se asigna en exclusividad a un proceso.<br>
+ Los valores óptimos para las porciones son: en arquitectura de 32 bits es de 4KB, y en arquitectura de 64 bits es de 8KB.<br>
+
+ La traducción de las direcciones de memoria se basa en dos conceptos:
+ <ol>
+ <li>El traductor divide las direcciones lógicas en 2 partes de la siguiente forma: los n bits más significativos identifican la página y el resto identifica el desplazamiento.</li>
+<li>Cuando el traductor dinámico de páginas recibe, en una dirección lógica, un número de página, examina una tabla (llamada tabla de páginas) en la que se relacionan las páginas lógicas con las páginas físicas y obtiene la dirección real (Número de marco) de la siguiente forma:</li>
+</ol>
+<br>
+<img id="paginacion1" alt="paginacion" src="../imagenes/paginacion1.png"><br>
+<p> </p>
+
+Al intentar acceder a una página ausente se produce un fallo (llamado en este caso fallo de página).<br>
+Con el objetivo de que la tabla de paginación no esté cargada completamente en la memoria y que no ocupe direcciones consecutivas, se utilizan las tablas de páginas multinivel, cuyo objetivo es paginar la tabla de páginas. <br>
+En los sistemas operativos con tablas de páginas multinivel los números de página se dividen en dos partes,  los bits más significativos indican el directorio de páginas correspondiente y los bits menos significativos el índice del directorio en el que se encuentra la página buscada:<br>
+<p> </p>
+<img id="paginacion2" alt="paginacion" src="../imagenes/paginacion2.jpg"><br>
+
+<h1>Segmentación</h1>
+Un segmento es un espacio de memoria de tamaño variable, compuesto por:<br>
+<ul>
+<li>Descriptor: Identificador único del segmento (dentro del espacio de memoria del proceso).</li>
+<li>Tamaño del segmento</li>
+</ul>
+<img id="segmentacion1" alt="segmentacion" src="../imagenes/segmentacion1.png"><br>
+Las características de la segmentación son:<br>
+<ul>
+<li>Cada proceso en ejecución (esté activo, bloqueado o preparado) tiene su tabla de segmentos.</li>
+<li>Se puede hacer que 2 segmentos se superpongan de manera que compartan direcciones de memoria física con direcciones lógicas diferentes, es lo que se conoce como solapamiento. De esta manera, procesos diferentes pueden compartir información y código usando la memoria común, pero no pueden compartir datos (complicaría la gestión)</li>
+<li>Protección de memoria: añadir 3 bits a la tabla de descriptores de segmentos para los permisos ( r w x ).</li>
+<li>Es posible la redimensión de segmentos siempre que haya posiciones libres contiguas, o crear un nuevo segmento y copiar el contenido del anterior.</li>
+<li>Gestión compleja, sobre todo por su tamaño variable</li>
+
+</ul>
+
+</section>
+<footer>
+<img id="HTML5_validador" alt="HTML Validado" src="../imagenes/HTML5.png">
+<img id="css_validador" alt="CSS Validado" src="../imagenes/css.gif">
+</footer>
+
+            
+</body>
+</html>
