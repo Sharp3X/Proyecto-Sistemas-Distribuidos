@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head> 
+<meta charset="utf-8">
+<meta name="keywords" content="Memory Management, Memory, La Rioja University,
+Alejandro Martínez Martínez, Israel Marañón Mangado, Alicia Martín Casas,
+computer engineering, Mathematics">
+<meta name="description" content="In this webpage you can find our computing systems project
+which discuss about the memory management in different OS">
+<meta name="Author" content="Israel Marañón Mangado, Alicia Martín Casas y Alejandro Martínez Martínez">
+<title>Memory management on Operating Systems</title>
+	<link rel="stylesheet" type="text/css" href="../CSS/posiciones.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/menu.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/imagenes.css">
+	<link rel="shortcut icon" type="image/png" href="../imagenes/icono.png">
+
+</head>
+<body>
+<header>
+<p> Memory management on Operating Systems</p>
+<a href="unix.html">
+<img id="espana" alt="Spanish webpage" src="../imagenes/ESPANA.png"></a>
+<a href="unixeng.html">
+<img id="uk" alt="English webpage" src="../imagenes/UK.png"></a>
+</header>
+<nav>
+<div id='cssmenu'>
+				<ul>
+				   <li class='active'><a href='indexeng.html'><span>Index</span></a></li>
+				   <li class='has-sub'><a href="memoriaeng.html"><span>Memory</span></a></li>
+				   <li class='has-sub'><span>Operating Systems</span>
+					 <ul>
+						 <li class='has-sub'><a href="windowseng.html"><span>Windows</span></a></li>
+						<li class='has-sub'><a href="linuxeng.html"><span>Linux</span></a></li>
+						 <li class='has-sub'><a href="unixeng.html"><span>Unix</span></a></li>
+						 <li class='has-sub'><a href="vaxeng.html"><span>VAX/VMS</span></a></li>
+						<li class='has-sub'><a href="maceng.html"><span>MAC</span></a></li>
+					  </ul>
+				   </li>
+				   <li class='last'><a href='contactoeng.html'><span>Contact</span></a></li>
+				</ul>
+			</div>
+</nav>
+<section id="contenido">
+<h1>UNIX</h1>
+The memory management is highly dependent on hardware support available, there are different forms of memory management in UNIX. Current implementations provide virtual memory demand paging combined with swapping process.<br><br>
+For each entry in the page table is considered the physical address of the page frame, protection bits (r, w, x), validity bit, reference bit, modified page bit, and a counter-old page . Only the physical address and the validity bit must be necessarily supported by hardware, the rest of the information can be simulated in software.<br><br>
+In addition, for each entry in the page table stored information to access the page in secondary memory (disk block descriptor). Other information structure that remains is a list of page frames, which stores information about the status of the page (assigned, executable file, free, charging DMA), the number of processes that reference frame (for sharing) and the device containing a copy of the page and the block number.<br><br>
+Some characteristics of the virtual memory management are:<br><br>
+<ul>
+<li>Global Allocation and working-set. UNIX defines the working-set of a process as a set of pages allocated to a process. Frames are not assigned to any process free frames are defined by the system, assignable to any process. If in a moment of time the limit is reached, a pager comes to age pages. Any reference to a page reset your age. If the age reaches a value n, established by the installation, the page goes to idle. This mechanism (clock algorithm) is also used by Linux.</li>
+<li>Writing pages in disk by groups. If the pager decided to release a page and the page has changed or there is no copy in the disk, this puts the page in a list of pages to write. If the number of items in this list reaches a certain limit, the pages are physically written to disk.</li>
+<li>Swapping: In situations high demand memory by processes when the page fault routine is not able to maintain the minimum level of free frames, the swapper process enters a process to remove memory. The selection criteria depend on the version of UNIX, but mainly rely on the state of the process and its priority.</li>
+
+</ul>
+
+
+
+</section>
+<footer>
+<img id="HTML5_validador" alt="Validated HTML" src="../imagenes/HTML5.png">
+<img id="css_validador" alt="Validated CSS" src="../imagenes/css.gif">
+</footer>
+
+            
+</body>
+</html>

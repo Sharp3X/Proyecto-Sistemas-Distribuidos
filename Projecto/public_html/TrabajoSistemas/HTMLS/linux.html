@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head> 
+<meta charset="utf-8">
+<meta name="keywords" content="Gestión de memoria, Memoria,
+Universidad de La Rioja, Alejandro Martínez Martínez, Israel Marañón Mangado, Alicia Martín Casas,
+Ingeniería Informática, Matemáticas">
+<meta name="description" content="En esta página encontrarás el trabajo
+de sistemas informáticos sobre la gestión de memoria en los diferentes sistemas operativos">
+<meta name="Author" content="Israel Marañón Mangado, Alicia Martín Casas y Alejandro Martínez Martínez">
+<title>Gestión de memoria en Sistemas Operativos</title>
+	<link rel="stylesheet" type="text/css" href="../CSS/posiciones.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/menu.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/imagenes.css">
+	<link rel="shortcut icon" type="image/png" href="../imagenes/icono.png">
+
+</head>
+<body>
+<header>
+<p> Gestión de memoria en Sistemas Operativos</p>
+<a href="linux.html">
+<img id="espana" alt="Página en Castellano" src="../imagenes/ESPANA.png"></a>
+<a href="linuxeng.html">
+<img id="uk" alt="Página en Inglés" src="../imagenes/UK.png"></a>
+</header>
+<nav>
+<div id='cssmenu'>
+				<ul>
+				   <li class='active'><a href='index.html'><span>Inicio</span></a></li>
+				   <li class='has-sub'><a href="memoria.html"><span>Memoria</span></a></li>
+				   <li class='has-sub'><span>Sistemas Operativos</span>
+					  <ul>
+						 <li class='has-sub'><a href="windows.html"><span>Windows</span></a></li>
+						<li class='has-sub'><a href="linux.html"><span>Linux</span></a></li>
+						 <li class='has-sub'><a href="unix.html"><span>Unix</span></a></li>
+						 <li class='has-sub'><a href="vax.html"><span>VAX/VMS</span></a></li>
+						<li class='has-sub'><a href="mac.html"><span>MAC</span></a></li>
+					  </ul>
+				   </li>
+				   <li class='last'><a href='contacto.html'><span>Contacto</span></a></li>
+				</ul>
+			</div>
+</nav>
+<section id="contenido">
+
+<h1>Linux</h1>
+Linux utiliza una tabla de página de tres niveles, cada tabla tiene el tamaño de una página:<br>
+<ul>
+<li>Directorio de páginas: Los procesos activos tienen un directorio de páginas único que tiene el tamaño de página. El directorio de páginas debe residir en la memoria principal para todo proceso activo.</li>
+<li>Directorio intermedio de páginas: Este directorio se expande a múltiples páginas. Cada entrada en la tabla de páginas apunta a una página que contiene una tabla de páginas.</li>
+<li>Tabla de páginas: Cada entrada en la tabla hace referencia a una página virtual del proceso.</li>
+
+</ul>
+Linux se basa en el algoritmo del Reloj, que consiste en asociar un bit de usado y otro de modificado con cada una de las páginas de memoria principal. En Linux el usado se reemplaza por una variable de 8 bits.<br> Cada vez que se accede a la página la variable se incrementa. Después Linux recorre periódicamente la lista completa de páginas y decrece la variable de edad de cada página a medida que va rotando por ellas en la memoria principal. Una página que tiene un 0 en una “página vieja”, es decir, no se ha hecho referencia a ella en un tiempo y por lo tanto es el mejor candidato para el reemplazo.<br> Cuanto más alto es el valor de la edad es, la frecuencia con la que se ha accedido a la  página recientemente en mayor y por lo tanto, la probabilidad de ser reemplazada será menor.<br><br>
+La gestión de la memoria del núcleo se realiza en base a los marcos de página de la memoria principal. Su función básica es asignar y liberar marcos para los distintos usos. Los fundamentos de la reserva de memoria en Linux son los mecanismos de reservas de páginas ya usados para la gestión de memoria virtual de usuario. Como se utiliza el algoritmo buddy, se puede reservar y liberar unidades de una o más páginas. Debido a que el tamaño mínimo de memoria que se puede reservar es de una página, la reserva de páginas no sería muy adecuada ya que el núcleo requiere pequeños fragmentos que se utilizarán por poco tiempo y que son de distintos tamaños. Es por eso que Linux utiliza un esquema conocido como “asignación de láminas”.<br> En una máquina Pentium/x64, el tamaño de página es de 4 Kbytes y los fragmentos dentro de una página se pueden asignar en tamaños de 32, 64, 128, 252, 2040 y 4080 bytes.<br><br>
+<img id="linux" alt="imagen de linux" src="../imagenes/linux.jpg">
+
+
+
+</section>
+<footer>
+<img id="HTML5_validador" alt="HTML Validado" src="../imagenes/HTML5.png">
+<img id="css_validador" alt="CSS Validado" src="../imagenes/css.gif">
+</footer>
+
+            
+</body>
+</html>

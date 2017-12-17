@@ -1,0 +1,46 @@
+nav a:link{
+	color: #EC9A00;
+	text-transform: capitalize;
+	text-decoration: none;
+}
+nav a:visited{
+	color: White;
+	text-transform: capitalize;
+	text-decoration: none;
+}
+nav li>a:hover{
+	color: aqua;
+	text-transform: uppercase;
+	font-family: Impact;
+
+}
+footer a:link{
+	border: thin;
+	border-color: purple;
+	color: red;
+	font-style: normal;
+
+}
+footer a:visited{
+	border: thin;
+	border-color: purple;
+	color: aqua;
+	font-style: normal;
+}
+footer a:hover{
+	border: thin;
+	border-color: purple;
+	color: yellow;
+	font-style: normal;
+	text-transform: uppercase;
+	font-family:"Kristen ITC";
+}
+
+footer a:active{
+	border: thin;
+	border-color: purple;
+	color: yellow;
+	font-style: normal;
+}
+
+

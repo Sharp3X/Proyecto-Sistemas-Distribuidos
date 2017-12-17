@@ -1,32 +1,27 @@
-package ProyectoFuncional.servidor;
-
+package Servidor;
 
 import java.util.concurrent.BlockingQueue;
 
-
 import ProyectoFuncional.claseManejadorasRobot.javaDuiono;
-import ProyectoFuncional.claseManejadorasRobot.memoriaMotores;
 
 public class HiloMandaOrdenes implements Runnable{
-	private BlockingQueue<String> cola;
-	private memoriaMotores m = null;
+	private BlockingQueue cola;
+	//private javaDuiono j;
 	
-	public HiloMandaOrdenes(BlockingQueue<String> cola) {
+	public HiloMandaOrdenes(BlockingQueue cola/*,javaDuiono j*/) {
 		this.cola=cola;
-		m = new memoriaMotores();
+		//this.j=j;
 	}
 	
 	@Override
 	public void run() {
 		while(true) {
 			synchronized (cola) {
-				try 
-				{
-					Thread.sleep(20);//para que le de tiempo al motor a mover la posicion
-					m.moverMotor(this.cola.take());
-				} 
-				catch (InterruptedException e) 
-				{
+				try {
+					//j.enviarDatos((int)this.cola.take());
+					System.out.println(this.cola.take());
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

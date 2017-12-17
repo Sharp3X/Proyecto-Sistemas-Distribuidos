@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head> 
+<meta charset="utf-8">
+<meta name="keywords" content="Memory Management, Memory, La Rioja University,
+Alejandro Martínez Martínez, Israel Marañón Mangado, Alicia Martín Casas,
+computer engineering, Mathematics">
+<meta name="description" content="In this webpage you can find our computing systems project
+which discuss about the memory management in different OS">
+<meta name="Author" content="Israel Marañón Mangado, Alicia Martín Casas y Alejandro Martínez Martínez">
+<title>Memory management on Operating Systems</title>
+	<link rel="stylesheet" type="text/css" href="../CSS/posiciones.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/menu.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/imagenes.css">
+	<link rel="shortcut icon" type="image/png" href="../imagenes/icono.png">
+
+</head>
+<body>
+<header>
+<p> Memory management on Operating Systems</p>
+<a href="linux.html">
+<img id="espana" alt="Spanish webpage" src="../imagenes/ESPANA.png"></a>
+<a href="linuxeng.html">
+<img id="uk" alt="English webpage" src="../imagenes/UK.png"></a>
+</header>
+<nav>
+<div id='cssmenu'>
+				<ul>
+				   <li class='active'><a href='indexeng.html'><span>Index</span></a></li>
+				   <li class='has-sub'><a href="memoriaeng.html"><span>Memory</span></a></li>
+				   <li class='has-sub'><span>Operating Systems</span>
+					 <ul>
+						 <li class='has-sub'><a href="windowseng.html"><span>Windows</span></a></li>
+						<li class='has-sub'><a href="linuxeng.html"><span>Linux</span></a></li>
+						 <li class='has-sub'><a href="unixeng.html"><span>Unix</span></a></li>
+						 <li class='has-sub'><a href="vaxeng.html"><span>VAX/VMS</span></a></li>
+						<li class='has-sub'><a href="maceng.html"><span>MAC</span></a></li>
+					  </ul>
+				   </li>
+				   <li class='last'><a href='contactoeng.html'><span>Contact</span></a></li>
+				</ul>
+			</div>
+</nav>
+<section id="contenido">
+<h1>Linux</h1>
+Linux uses a page table with three levels, each table is the size of a page:<br>
+<ul>
+<li>Website Directory: Active processes have a unique page directory in the page size. The page directory must reside in main memory for all active process.</li>
+<li>Intermediate Website Directory: This directory spans itself into multiple pages. Each entry in the page table points to a page that contains a page table.</li>
+<li>Table of Pages: Each entry in the table refers to a virtual page of the process.</li>
+
+</ul>
+Linux is based on the algorithm of the clock that  associate a bit to be used and other to be modified with each of the main memory pages. The used in Linux is replaced by an 8-bit variable. Each time you access the page, the variable is increased. Linux runs periodically after the list of pages and decreases age of the variable in each page as you rotate through them in main memory. When a page has a 0 is an "old page", it has not been referred to in a while, and therefore it is the best candidate for replacement. When the value of the age is high, it is difficult to be replaced.
+The memory management kernel is made based on the page frames of main memory. Its basic function is to allocate and free frames for different uses. The basics of memory backup in Linux, are the reservation mechanisms of pages already used for user virtual  memory management. When the buddy algorithm is used, you can reserve and release units of one or more pages. As the minimum size of memory that can be reserved is one page, the pages reserve would not be well suited as the core requires small pieces that will be used for a short time and are of different sizes. That's why Linux uses a scheme known as "assignment sheet". In a Pentium / x64 machine, the page size is 4 Kbytes and fragments within a page can be assigned in sizes 32, 64, 128, 252, 2040 and 4080 bytes.<br><br>
+<img id="linux" alt="imagen de linux" src="../imagenes/linux.jpg">
+
+
+</section>
+<footer>
+<img id="HTML5_validador" alt="Validated HTML" src="../imagenes/HTML5.png">
+<img id="css_validador" alt="Validated CSS" src="../imagenes/css.gif">
+</footer>
+
+            
+</body>
+</html>

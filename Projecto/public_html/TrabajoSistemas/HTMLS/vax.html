@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head> 
+<meta charset="utf-8">
+<meta name="keywords" content="Gestión de memoria, Memoria,
+Universidad de La Rioja, Alejandro Martínez Martínez, Israel Marañón Mangado, Alicia Martín Casas,
+Ingeniería Informática, Matemáticas">
+<meta name="description" content="En esta página encontrarás el trabajo
+de sistemas informáticos sobre la gestión de memoria en los diferentes sistemas operativos">
+<meta name="Author" content="Israel Marañón Mangado, Alicia Martín Casas y Alejandro Martínez Martínez">
+<title>Gestión de memoria en Sistemas Operativos</title>
+	<link rel="stylesheet" type="text/css" href="../CSS/posiciones.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/menu.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/imagenes.css">
+	<link rel="shortcut icon" type="image/png" href="../imagenes/icono.png">
+</head>
+<body>
+<header>
+<p> Gestión de memoria en Sistemas Operativos</p>
+<a href="vax.html">
+<img id="espana" alt="Página en Castellano" src="../imagenes/ESPANA.png"></a>
+<a href="vaxeng.html">
+<img id="uk" alt="Página en Inglés" src="../imagenes/UK.png"></a>
+</header>
+<nav>
+<div id='cssmenu'>
+				<ul>
+				   <li class='active'><a href='index.html'><span>Inicio</span></a></li>
+				   <li class='has-sub'><a href="memoria.html"><span>Memoria</span></a></li>
+				   <li class='has-sub'><span>Sistemas Operativos</span>
+					  <ul>
+						 <li class='has-sub'><a href="windows.html"><span>Windows</span></a></li>
+						<li class='has-sub'><a href="linux.html"><span>Linux</span></a></li>
+						 <li class='has-sub'><a href="unix.html"><span>Unix</span></a></li>
+						 <li class='has-sub'><a href="vax.html"><span>VAX/VMS</span></a></li>
+						<li class='has-sub'><a href="mac.html"><span>MAC</span></a></li>
+					  </ul>
+				   </li>
+				   <li class='last'><a href='contacto.html'><span>Contacto</span></a></li>
+				</ul>
+			</div>
+</nav>
+<section id="contenido">
+<h1>VAX/VMS</h1>
+El sistema operativo VMS, desarrollado para la familia VAX-11 de Digital, proporciona un entorno unificado para hardware con diferentes niveles de rendimiento. La gestión de memoria se encontraba muchas veces con un soporte hardware muy limitado.<br><br>
+ El VAX-11 proporcionaba un espacio de direccionamiento virtual de 32 bits, repartidos entre usuario y sistema. Las direcciones eran paginadas, con un tamaño de página de 512 bytes. Un programa de usuario disponía de tres regiones (segmentos), cada uno con una tabla de páginas con registros de base y de longitud asociados. Como soporte para memoria virtual, cada entrada de las tablas de páginas contaba, al menos, con un bit de validez y un conjunto de bits para protección de acceso. Las principales características de la gestión de la memoria virtual son:<br><br>
+<ul>
+<li>Asignación de páginas local: Existe un límite máximo en el número de páginas residentes por proceso . Los procesos pueden ser expulsados de memoria para evitar la sobrepaginación, cuando un proceso vuelve a memoria lo hace con el mismo conjunto de páginas residentes con que fue expulsado. </li>
+<li>Paginación con reemplazo FIFO y buffer de marcos global: El paginador mantiene un número adicional de marcos de página que no están asignados a los conjuntos residentes de cada proceso. Este buffer se compone de dos listas: lista de marcos modificados y lista de marcos libres. Cuando un proceso hace referencia a una página que no está en su conjunto residente, la rutina de fallo de página busca primero en estas listas; si lo encuentra, lo añade a su conjunto residente sin acceder a memoria secundaria. En el caso de la lista de marcos modificados, éstos se escriben conjuntamente en disco.</li> 
+<li>Agrupamiento de páginas:  El pequeño tamaño de la página del VAX causaría un rendimiento muy pobre si éstas se transfirieran individualmente entre memoria y disco, para evitarlo, las páginas de un proceso se agrupan para transferirse conjuntamente. En el caso de lectura, por ejemplo, se transfieren las páginas del conjunto residente de un proceso. En el caso de escritura, se transfieren las de la lista de modificadas.</li>
+<li>Swapping. En determinadas circunstancias, la única forma de recuperar marcos libres es sacando de memoria el working-set completo de uno o más procesos, para lo que se tiene en cuenta la prioridad y un quantum de memoria de los procesos.</li>
+
+</ul>
+
+</section>
+<footer>
+<img id="HTML5_validador" alt="HTML Validado" src="../imagenes/HTML5.png">
+<img id="css_validador" alt="CSS Validado" src="../imagenes/css.gif">
+</footer>
+
+            
+</body>
+</html>

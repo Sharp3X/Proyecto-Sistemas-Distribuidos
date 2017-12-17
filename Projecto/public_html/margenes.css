@@ -1,0 +1,9 @@
+#texto p,#texto h2{
+	margin-left: 2%;
+}
+nav p{
+	margin-left: 2%;
+}
+#contenido{
+overflow: auto;
+}

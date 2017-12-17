@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head> 
+<meta charset="utf-8">
+<meta name="keywords" content="Memory Management, Memory, La Rioja University,
+Alejandro Martínez Martínez, Israel Marañón Mangado, Alicia Martín Casas,
+computer engineering, Mathematics">
+<meta name="description" content="In this webpage you can find our computing systems project
+which discuss about the memory management in different OS">
+<meta name="Author" content="Israel Marañón Mangado, Alicia Martín Casas y Alejandro Martínez Martínez">
+<title>Memory management on Operating Systems</title>
+	<link rel="stylesheet" type="text/css" href="../CSS/posiciones.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/menu.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/imagenes.css">
+	<link rel="shortcut icon" type="image/png" href="../imagenes/icono.png">
+
+</head>
+<body>
+<header>
+<p> Memory management on Operating Systems</p>
+<a href="vax.html">
+<img id="espana" alt="Spanish webpage" src="../imagenes/ESPANA.png"></a>
+<a href="vaxeng.html">
+<img id="uk" alt="English webpage" src="../imagenes/UK.png"></a>
+</header>
+<nav>
+<div id='cssmenu'>
+				<ul>
+				   <li class='active'><a href='indexeng.html'><span>Index</span></a></li>
+				   <li class='has-sub'><a href="memoriaeng.html"><span>Memory</span></a></li>
+				   <li class='has-sub'><span>Operating Systems</span>
+					  <ul>
+						 <li class='has-sub'><a href="windowseng.html"><span>Windows</span></a></li>
+						<li class='has-sub'><a href="linuxeng.html"><span>Linux</span></a></li>
+						 <li class='has-sub'><a href="unixeng.html"><span>Unix</span></a></li>
+						 <li class='has-sub'><a href="vaxeng.html"><span>VAX/VMS</span></a></li>
+						<li class='has-sub'><a href="maceng.html"><span>MAC</span></a></li>
+					  </ul>
+				   </li>
+				   <li class='last'><a href='contactoeng.html'><span>Contact</span></a></li>
+				</ul>
+			</div>
+</nav>
+<section id="contenido">
+<h1>VAX/VMS</h1>
+VMS operating system, developed for the Digital VAX-11 family provides a unified hardware with different performance levels environment. Memory management was often with very limited hardware support.<br><br>
+The VAX-11 provided a virtual address space of 32 bits, divided between user and system. The addresses were paged, with a page size of 512 bytes. A user program had three regions (segments), each with a page table with database records and associated length. As support for virtual memory, each entry in the page tables had at least a bit of validity and a set of bits for access protection. The main features of the virtual memory management are:<br><br>
+<ul>
+<li>Allocation of Local pages: There is a maximum limit on the number of residents per process pages. Processes can be driven from memory to avoid overpaging, when a process makes memory again with the same set of pages resident who was expelled.</li>
+<li>Page with replacement FIFO buffer and global frameworks: The pager maintains an additional number of page frames that are not allocated to the residents of each process sets. This buffer consists of two lists: a list of modified and a list of free frames. When a process refers to a page which is not in its place, the page fault routine first searches these lists; if found, it adds the page without access to secondary memory. </li> 
+<li>Grouping of pages: The small size of the VAX page cause very poor yield if they are individually transferred between memory and disk, to avoid it, the pages of a process are grouped together to be transferred. For reading, for example, pages resident set of a transfer process. For writing, the modified list is transferred.</li>
+<li>Swapping:  In certain circumstances, the only way to regain free memory frames is taking full working-set of one or more processes, which take into account the priority and a memory quantum processes.</li>
+
+</ul>
+
+
+
+</section>
+<footer>
+<img id="HTML5_validador" alt="Validated HTML" src="../imagenes/HTML5.png">
+<img id="css_validador" alt="Validated CSS" src="../imagenes/css.gif">
+</footer>
+
+            
+</body>
+</html>

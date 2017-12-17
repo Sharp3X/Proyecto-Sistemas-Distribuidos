@@ -1,4 +1,4 @@
-package ProyectoFuncional.servidor;
+package Servidor;
 
 import java.io.Closeable;
 import java.io.DataInputStream;
@@ -9,14 +9,23 @@ import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 
 public class HiloCliente implements Runnable {
+	// tres parametros, socket, numero de motor, grados
 
 	private Socket s;
-	private BlockingQueue<String> cola;
+	private int nMotor;
+	private int grados; // Up down
+	private BlockingQueue<Integer> cola;
 	int i;
 
+	public int getnMotor() {
+		return nMotor;
+	}
 
+	public int getGrados() {
+		return grados;
+	}
 
-	public HiloCliente(Socket s, BlockingQueue<String> cola, int i) {
+	public HiloCliente(Socket s, BlockingQueue<Integer> cola, int i) {
 		super();
 		this.s = s;
 		this.cola = cola;
@@ -26,21 +35,20 @@ public class HiloCliente implements Runnable {
 
 	@Override
 	public void run() {
+		InputStream is = null;
 		DataInputStream dis = null;
-		String mensaje;
+		int recibido;
 
 		try {
-			dis = new DataInputStream(s.getInputStream());
+			is = s.getInputStream();
+			dis = new DataInputStream(is);
 
 			// recibe el nMotor, y el numero de grados
-			while(true)
-			{
-				mensaje = dis.readLine();
-				cola.put(mensaje);
-			}
+
+			recibido = dis.readInt();
 			
-			
-			
+				cola.put(recibido);
+				System.out.println("Hilo "+ i + " elemento añadido");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -48,8 +56,8 @@ public class HiloCliente implements Runnable {
 			System.out.println("Interrupción al añadir");
 			e.printStackTrace();
 		} finally {
+			cerrar(is);
 			cerrar(dis);
-			cerrar(s);
 		}
 
 	}

@@ -1,0 +1,45 @@
+table{
+	
+		border-style: solid;
+		border-width: 2px 2px 2px 2px;
+		border-color: Black;
+		padding: 10px;
+		
+		}
+td{
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	border-color: fuchsia;
+}
+th{
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	border-color: fuchsia;
+}
+tbody{
+	text-align:center;
+}
+body{
+	font-family: "MV Boli";
+	color: #7576ff;
+}
+caption{
+	font-size:larger;
+	font-weight:bolder;
+}
+#titulo{
+	background-color: #ffdab9;
+	font-size: larger;
+	font-weight: bolder;
+}
+span.asignatura{
+	color: #9932cc;
+	font-weight: bold;
+}
+span.grupo{
+	font-style: normal;
+	font-weight: bold;
+}
+colgroup#dias{
+	width: 18%;
+}

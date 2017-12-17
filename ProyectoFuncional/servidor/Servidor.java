@@ -1,4 +1,4 @@
-package ProyectoFuncional.servidor;
+package Servidor;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import ProyectoFuncional.claseManejadorasRobot.javaDuiono;
+import ServidorDescargador.servidor;
 
 public class Servidor {
 	public static void main(String[] args) {
@@ -18,30 +19,34 @@ public class Servidor {
 		Socket s=null;
 		
 		try {
+			//Inicializamos el servidor que servirá para descargar el ejecutable, atiende en el 8080
+			Thread des=new Thread(new servidor());
+			des.start();
+			
 			//Inicializamos el ServerSocket
 			ss=new ServerSocket(6666);
+			
 			
 			//Inicializamos el robot
 			//javaDuiono j = new javaDuiono();
 			//j.inicializarConexion();
 			ExecutorService pool=Executors.newCachedThreadPool();
-			BlockingQueue<String> colaMotor=new ArrayBlockingQueue<>(1000);
+			BlockingQueue<Integer> colaMotor=new ArrayBlockingQueue<Integer>(1000);
 			
 			//Inicializamos el hilo que manda ordenes al brazo
 			
-			Thread hi=new Thread(new HiloMandaOrdenes(colaMotor));
+			Thread hi=new Thread(new HiloMandaOrdenes(colaMotor/*,j*/));
 			hi.start();
 			
-			int i = 0;
+
 			try {
-				while(true) 
-				{
-					
-					s=ss.accept();
-					System.out.println("Cliente "+i+"conectado");
-					pool.execute(new HiloCliente(s,colaMotor,i));
-					i++;
-					
+				while(true) {
+					for(int i=0;i<5;i++) {
+						s=ss.accept();
+						System.out.println("Cliente "+i+"conectado");
+						pool.execute(new HiloCliente(s,colaMotor,i));
+					}
+					System.out.println("Bloque de 5 hilos creado");
 				}
 			}
 			catch(IOException e) {
@@ -66,3 +71,32 @@ public class Servidor {
 	}
 }
 
+//for (int i=0;i<5;i++) {
+	
+	
+	
+//	s=ss.accept();
+//	System.out.println("Cliente 1 conectado");
+//	th1 =new Hilo(s);
+//	pool.execute(th1);
+//	
+//	s=ss.accept();
+//	System.out.println("Cliente 2 conectado");
+//	th2 =new Hilo(s);
+//	pool.execute(th2);
+//	
+//	s=ss.accept();
+//	System.out.println("Cliente 3 conectado");
+//	th3 =new Hilo(s);
+//	pool.execute(th3);
+//	
+//	s=ss.accept();
+//	System.out.println("Cliente 4 conectado");
+//	th4 =new Hilo(s);
+//	pool.execute(th4);
+//	
+//	s=ss.accept();
+//	System.out.println("Cliente 5 conectado");
+//	th5 =new Hilo(s);
+//	pool.execute(th5);
+//}
