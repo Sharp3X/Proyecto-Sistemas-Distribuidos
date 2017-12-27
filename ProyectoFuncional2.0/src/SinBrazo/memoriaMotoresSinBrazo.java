@@ -1,17 +1,17 @@
 package SinBrazo;
 
-public class memoriaMotores
+public class memoriaMotoresSinBrazo
 {
 	
 	private int numMotores = 5;
 	private int v [] = null;
-	private javaDuiono j = null;
+	private javaDuionoSinBrazo j = null;
 	
 	
-	public memoriaMotores()
+	public memoriaMotoresSinBrazo()
 	{
-		j = new javaDuiono();
-		//j.inicializarConexion();
+		j = new javaDuionoSinBrazo();
+		j.inicializarConexion();
 		//v = new int [numMotores];
 		v = new int [] {15,25,35,45,55};
 	}
@@ -30,12 +30,12 @@ public class memoriaMotores
 				if(upDown.equals("UP")  && v[motor]%10 !=9)
 				{
 					v[motor]++;
-					System.out.println(v[motor]); //Mostramos en lugar de enviarlo
+					j.enviarDatos(orden);
 				}
 				else if(upDown.equals("DOWN")  && v[motor]%10 !=0)
 				{
 					v[motor]--;
-					System.out.println(v[motor]); //Mostramos en lugar de enviarlo
+					j.enviarDatos(orden);
 				}
 			}
 			

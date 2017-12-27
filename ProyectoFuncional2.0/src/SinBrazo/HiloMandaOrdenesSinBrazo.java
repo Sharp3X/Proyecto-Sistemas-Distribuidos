@@ -4,15 +4,14 @@ package SinBrazo;
 import java.util.concurrent.BlockingQueue;
 
 import claseManejadorasRobot.javaDuiono;
-import claseManejadorasRobot.memoriaMotores;
 
-public class HiloMandaOrdenes implements Runnable{
+public class HiloMandaOrdenesSinBrazo implements Runnable{
 	private BlockingQueue<String> cola;
-	private memoriaMotores m = null;
+	private memoriaMotoresSinBrazo m = null;
 	
-	public HiloMandaOrdenes(BlockingQueue<String> cola) {
+	public HiloMandaOrdenesSinBrazo(BlockingQueue<String> cola) {
 		this.cola=cola;
-		m = new memoriaMotores();
+		m = new memoriaMotoresSinBrazo();
 	}
 	
 	@Override
@@ -22,7 +21,7 @@ public class HiloMandaOrdenes implements Runnable{
 				try 
 				{
 					Thread.sleep(20);//para que le de tiempo al motor a mover la posicion
-					System.out.println(this.cola.take()); //lo mostramos por la consola
+					m.moverMotor(this.cola.take());
 				} 
 				catch (InterruptedException e) 
 				{

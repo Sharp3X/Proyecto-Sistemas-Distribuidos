@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 import claseManejadorasRobot.javaDuiono;
 import httpServicio.servidorAlojaJar;
 
-public class Servidor {
+public class ServidorSinBrazo {
 	public static void main(String[] args) {
 		System.out.println("Inicio de la actividad en el servidor");
 		ServerSocket ss=null;
@@ -32,7 +32,7 @@ public class Servidor {
 			
 			//Inicializamos el hilo que manda ordenes al brazo
 			
-			Thread hi=new Thread(new HiloMandaOrdenes(colaMotor));
+			Thread hi=new Thread(new HiloMandaOrdenesSinBrazo(colaMotor));
 			hi.start();
 			
 			int i = 0;
@@ -42,7 +42,7 @@ public class Servidor {
 					
 					s=ss.accept();
 					System.out.println("Cliente "+i+"conectado");
-					pool.execute(new HiloCliente(s,colaMotor,i));
+					pool.execute(new HiloClienteSinBrazo(s,colaMotor,i));
 					i++;
 					
 				}

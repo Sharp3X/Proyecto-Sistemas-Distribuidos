@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 
-public class HiloCliente implements Runnable {
+public class HiloClienteSinBrazo implements Runnable {
 
 	private Socket s;
 	private BlockingQueue<String> cola;
@@ -16,7 +16,7 @@ public class HiloCliente implements Runnable {
 
 
 
-	public HiloCliente(Socket s, BlockingQueue<String> cola, int i) {
+	public HiloClienteSinBrazo(Socket s, BlockingQueue<String> cola, int i) {
 		super();
 		this.s = s;
 		this.cola = cola;
