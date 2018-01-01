@@ -19,18 +19,15 @@ public class ventanaPrincipal
 		
 		TabFolder tabF = new TabFolder(shell, SWT.TOP);//grupo de pestañas. Si queremos que esten arriba, SWT.TOP , y abajo SWT.BOTTOM
 		
-//		TabItem tab1 = new TabItem(tabF, SWT.NONE);//pestania 1
-//		tab1.setText("RobotInterfaz");
-//		
-//		tab1.setControl( new botonesRobot(tabF, SWT.NONE) );
-//		tabF.pack();
-//		
-		
-		/////////////////////////
+
 		enviadorCliente out = null;
 		try
 		{
-			out = new enviadorCliente("188.77.49.178", 6666);
+//			out = new enviadorCliente("192.168.43.14", 6666);
+			//usariamos una ip como esta para poder conectarnos a la ip del servidor.
+			//para la entrega del trabajo, usare localhost y que el cliente se conecte a el mismo ordenador.
+			
+			out = new enviadorCliente("localhost", 6666);
 			
 			Group gpadre = new Group(tabF, SWT.NONE);
 				
@@ -67,7 +64,7 @@ public class ventanaPrincipal
 			
 			gpadre.pack();
 		}
-		/////////////////////////
+		
 		tabF.pack();
 		
 		

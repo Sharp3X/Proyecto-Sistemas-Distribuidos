@@ -6,6 +6,8 @@ public class principal {
 
 	public static void main(String[] args) 
 	{
+		//clase de comprobacion del funcionamiento del robot
+		
 			javaDuiono j = new javaDuiono();
 			
 			j.inicializarConexion();

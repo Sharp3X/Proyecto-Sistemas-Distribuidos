@@ -10,13 +10,8 @@ import gnu.io.SerialPort;
 import gnu.io.UnsupportedCommOperationException;
 
 public class javaDuiono {
+	
 
-	private static final String TURN_AMARILLO_OFF = "0";
-	private static final String TURN_AMARILLO_ON = "1";
-	private static final String TURN_ROJO_OFF = "2";
-	private static final String TURN_ROJO_ON = "3";
-	
-	
 	//variables de conexion
 	private OutputStream output = null;
 	private SerialPort serialPort = null;
@@ -38,7 +33,7 @@ public class javaDuiono {
 	public void inicializarConexion()
 	{
 		/*
-		 * CODIGO REUTILIZABLE AL USAR JAVA CON ARTUINO
+		 * CODIGO REUTILIZABLE AL USAR JAVA CON ARDUINO
 		 * 
 		 * */
 		

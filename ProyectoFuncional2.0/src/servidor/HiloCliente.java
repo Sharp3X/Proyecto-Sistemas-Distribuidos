@@ -36,6 +36,7 @@ public class HiloCliente implements Runnable {
 			while(true)
 			{
 				mensaje = dis.readLine();
+				System.out.println(mensaje);
 				if(mensaje != null)
 					cola.put(mensaje);
 				else	//el cliente se ha desconectado.

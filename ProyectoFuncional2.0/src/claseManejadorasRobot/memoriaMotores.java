@@ -1,16 +1,26 @@
 package claseManejadorasRobot;
 
+import SinBrazo.javaDuionoSinBrazo;
+
 public class memoriaMotores
 {
+	/*
+	 * 
+	 * Para que el brazo fucionase, simplemente usariamos la clase
+	 * javaDuino en vez de javaDuionoSinBrazo
+	 * 
+	 * */
 	
 	private int numMotores = 5;
 	private int v [] = null;
 	private javaDuiono j = null;
+//	private javaDuionoSinBrazo j = null;
 	
 	
 	public memoriaMotores()
 	{
 		j = new javaDuiono();
+//		j = new javaDuionoSinBrazo();
 		j.inicializarConexion();
 		//v = new int [numMotores];
 		v = new int [] {15,25,35,45,55};

@@ -1,34 +1,14 @@
 package SinBrazo;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Enumeration;
-
-import gnu.io.CommPortIdentifier;
-import gnu.io.PortInUseException;
-import gnu.io.SerialPort;
-import gnu.io.UnsupportedCommOperationException;
 
 public class javaDuionoSinBrazo {
-
-	private static final String TURN_AMARILLO_OFF = "0";
-	private static final String TURN_AMARILLO_ON = "1";
-	private static final String TURN_ROJO_OFF = "2";
-	private static final String TURN_ROJO_ON = "3";
+	//esta clase realiza la accion de mostrar por pantalla las ordenes 
+	//que deberían lanzarse al brazo mecanico.
 	
-	
-	//variables de conexion
-	private OutputStream output = null;
-	private SerialPort serialPort = null;
-	private final String PUERTO = "COM4";
-	
-	
-	private static final int TIMEOUT = 2000;	
-	//espera para dar tiempo a que se abra el puerto
-	
-	
-	private static final int DATA_RATE=9600;
-	//ratio del puerto en arduino.
+	//para ello se necesitan ciertas librerias y conexion con el puerto 
+	// correspondiente que use el ordenador para conectarse con el brazo.
+	// Para ver si funciona sin el brazo, se necesita usar esta clase.
 	
 	public javaDuionoSinBrazo()
 	{
@@ -41,9 +21,9 @@ public class javaDuionoSinBrazo {
 		
 	}
 	
-	public void enviarDatos(String orden)
+	public void enviarDatos(int datos)
 	{
-			System.out.println(orden);		
+		System.out.println("Se envia por el puerto serie: "+datos);
 	}
 
 }
